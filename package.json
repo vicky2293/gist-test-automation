@@ -1,0 +1,12 @@
+{
+  "name": "gist",
+  "version": "1.0.0",
+  "description": "Test automation for Gist",
+  "license": "ISC",
+  "author": "vignesh",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
