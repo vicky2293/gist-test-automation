@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { GistApi } from '../clients/gist.api.js';
 import { Gist } from '../models/types.js'
+import { validateSchema } from '../utils/schema-validator.js'
 
 describe('GET /gists', () => {
   it('gets list of gists', async () => {
@@ -14,5 +15,7 @@ describe('GET /gists', () => {
     gists.forEach((gist) => {
       expect(gist.public).toBe(true);
     });
+
+   validateSchema('listGist.json', response.body);
   });
 });
