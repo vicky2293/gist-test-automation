@@ -75,10 +75,7 @@
         "format": "date-time"
       },
       "description": {
-        "type": [
-          "string",
-          "null"
-        ]
+        "type": ["string", "null"]
       },
       "comments": {
         "type": "integer"
@@ -97,16 +94,10 @@
             "type": "object",
             "properties": {
               "name": {
-                "type": [
-                  "string",
-                  "null"
-                ]
+                "type": ["string", "null"]
               },
               "email": {
-                "type": [
-                  "string",
-                  "null"
-                ]
+                "type": ["string", "null"]
               },
               "login": {
                 "type": "string"
@@ -123,10 +114,7 @@
                 "format": "uri"
               },
               "gravatar_id": {
-                "type": [
-                  "string",
-                  "null"
-                ]
+                "type": ["string", "null"]
               },
               "url": {
                 "type": "string",
@@ -214,16 +202,10 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           },
           "email": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           },
           "login": {
             "type": "string"
@@ -240,10 +222,7 @@
             "format": "uri"
           },
           "gravatar_id": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           },
           "url": {
             "type": "string",
