@@ -1,12 +1,17 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, beforeAll } from 'vitest';
 import { GistApi } from '../clients/gist.api.js';
 import { Gist } from '../models/types.js';
 import { validateSchema } from '../utils/schema-validator.js';
+import { GistFixtures } from '../fixtures/gist.fixture.js';
+
+let gistApi: GistApi;
+
+beforeAll(() => {
+  gistApi = new GistApi();
+});
 
 describe('GET /gists', () => {
   it('gets list of gists as unauthenticated user - returns 200', async () => {
-    const gistApi = new GistApi();
-
     const response = await gistApi.listGists();
     expect(response.status).toBe(200);
 
@@ -20,8 +25,6 @@ describe('GET /gists', () => {
   });
 
   it('cannot request without User Agent Header - returns 403', async () => {
-    const gistApi = new GistApi();
-
     const response = await gistApi.invalidListGists();
     expect(response.status).toBe(403);
   });
