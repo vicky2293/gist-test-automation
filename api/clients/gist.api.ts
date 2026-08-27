@@ -38,4 +38,16 @@ export class GistApi {
 
     return req;
   }
+
+  async invalidTokenListGists() {
+    // Invalid auth_token
+    const req = this.client
+      .get(`/gists`)
+      .set('Accept', 'application/vnd.github+json')
+      .set('X-GitHub-Api-Version', '2026-03-10')
+      .set('Authorization', 'Bearer invalid token')
+      .set('User-Agent', 'gist-api-test-framework');
+
+    return req;
+  }
 }

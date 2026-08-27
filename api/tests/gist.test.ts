@@ -58,4 +58,9 @@ describe('GET /gists - authenticated', () => {
     expect(body.length).toBe(0);
     validateSchema('listGist.json', response.body);
   });
+
+  test('cannot list gist with invalid token - returns 401', async () => {
+    const response = await gistApi.invalidTokenListGists();
+    expect(response.status).toBe(401);
+  });
 });
