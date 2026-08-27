@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeAll } from 'vitest';
+import { describe, expect, it, beforeAll, test } from 'vitest';
 import { GistApi } from '../clients/gist.api.js';
 import { Gist } from '../models/types.js';
 import { validateSchema } from '../utils/schema-validator.js';
@@ -10,9 +10,9 @@ beforeAll(() => {
   gistApi = new GistApi();
 });
 
-describe('GET /gists', () => {
-  it('gets list of gists as unauthenticated user - returns 200', async () => {
-    const response = await gistApi.listGists();
+describe('GET /gists - unauthenticated', () => {
+  test('list gists - returns 200', async () => {
+    const response = await gistApi.listGists('unauthenticated');
     expect(response.status).toBe(200);
 
     const gists = response.body as Gist[];
@@ -24,8 +24,38 @@ describe('GET /gists', () => {
     validateSchema('listGist.json', response.body);
   });
 
-  it('cannot request without User Agent Header - returns 403', async () => {
+  test('list gists using query params - returns 200', async () => {
+    // const today = new Date().toISOString(); // format: YYYY-MM-DDTHH:MM:SSZ
+    const queryParams = { since: '2026-01-01T00:00:00Z', per_page: 1, page: 1 };
+    const response = await gistApi.listGists('unauthenticated', queryParams);
+    expect(response.status).toBe(200);
+
+    const body = response.body;
+    expect(body.length).toBe(1);
+    validateSchema('listGist.json', response.body);
+  });
+
+  test('cannot request without User Agent Header - returns 403', async () => {
     const response = await gistApi.invalidListGists();
     expect(response.status).toBe(403);
+  });
+});
+
+describe('GET /gists - authenticated', () => {
+  test('list gists - returns 200', async () => {
+    const response = await gistApi.listGists('authenticated');
+    expect(response.status).toBe(200);
+    validateSchema('listGist.json', response.body);
+  });
+
+  test('list gists using query params - returns 200', async () => {
+    // const today = new Date().toISOString(); // format: YYYY-MM-DDTHH:MM:SSZ
+    const queryParams = { since: '2026-01-01T00:00:00Z', per_page: 1, page: 1 };
+    const response = await gistApi.listGists('authenticated', queryParams);
+    expect(response.status).toBe(200);
+
+    const body = response.body;
+    expect(body.length).toBe(0);
+    validateSchema('listGist.json', response.body);
   });
 });
