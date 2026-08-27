@@ -3,3 +3,14 @@ export interface Gist {
 }
 
 export type Authentication = 'authenticated' | 'unauthenticated';
+
+export interface CreateGistRequest {
+  description: string;
+  files: Record<
+    string,
+    {
+      content: string;
+    }
+  >;
+  public: boolean;
+}

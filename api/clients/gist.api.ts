@@ -1,6 +1,6 @@
 import request, { Response } from 'supertest';
 import { env } from '../../config/env.js';
-import type { Authentication } from '../models/types.js';
+import type { Authentication, CreateGistRequest } from '../models/types.js';
 
 export class GistApi {
   private readonly client = request(env.githubBaseUrl);
@@ -47,6 +47,28 @@ export class GistApi {
       .set('X-GitHub-Api-Version', '2026-03-10')
       .set('Authorization', 'Bearer invalid token')
       .set('User-Agent', 'gist-api-test-framework');
+
+    return req;
+  }
+
+  async createGist(
+    authentication: Authentication = 'authenticated',
+    requestBody: CreateGistRequest,
+  ) {
+    const req = this.client
+      .post(`/gists`)
+      .set('Accept', 'application/vnd.github+json')
+      .set('X-GitHub-Api-Version', '2026-03-10')
+      .set('User-Agent', 'gist-api-test-framework');
+
+    if (authentication === 'authenticated') {
+      if (!env.githubToken) {
+        throw new Error('GITHUB_TOKEN is required for authenticated requests');
+      }
+      req.set('Authorization', `Bearer ${env.githubToken}`);
+    }
+
+    req.send(requestBody);
 
     return req;
   }
