@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["api", "ui", "config", "*.ts"]
+  "include": ["api", "ui", "config", "*.ts", "eslint.config.js"]
 }
