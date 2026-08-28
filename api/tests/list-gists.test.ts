@@ -1,13 +1,7 @@
 import { describe, expect, beforeAll, test } from 'vitest';
-import { GistApi } from '../clients/gist.api.js';
+import { gistApi } from '../fixtures/gist.fixture.js';
 import { Gist } from '../models/types.js';
 import { validateSchema } from '../utils/schema-validator.js';
-
-let gistApi: GistApi;
-
-beforeAll(() => {
-  gistApi = new GistApi();
-});
 
 describe('GET /gists - unauthenticated', () => {
   test('list gists - returns 200', async () => {

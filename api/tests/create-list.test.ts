@@ -1,17 +1,12 @@
-import { describe, expect, beforeAll, test } from 'vitest';
-import { GistApi } from '../clients/gist.api.js';
+import { describe, expect, test } from 'vitest';
+import { gistApi } from '../fixtures/gist.fixture.js';
 import { validateSchema } from '../utils/schema-validator.js';
 
-let gistApi: GistApi;
 const requestBody = {
   description: 'Example of a gist',
   public: false,
   files: { 'README.md': { content: 'Hello World' } },
 };
-
-beforeAll(() => {
-  gistApi = new GistApi();
-});
 
 describe('POST /gists', () => {
   test('list gists - returns 201', async () => {

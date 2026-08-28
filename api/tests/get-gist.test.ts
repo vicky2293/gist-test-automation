@@ -1,13 +1,7 @@
 import { describe, expect, beforeAll, test } from 'vitest';
-import { GistApi } from '../clients/gist.api.js';
+import { gistApi } from '../fixtures/gist.fixture.js';
 import { validateSchema } from '../utils/schema-validator.js';
 import { env } from '../../config/env.js';
-
-let gistApi: GistApi;
-
-beforeAll(() => {
-  gistApi = new GistApi();
-});
 
 describe('GET /gists/{gistId}', () => {
   test('get gist - returns 200', async () => {

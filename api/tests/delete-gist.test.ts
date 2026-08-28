@@ -1,13 +1,5 @@
-import { describe, expect, beforeAll, test } from 'vitest';
-import { GistApi } from '../clients/gist.api.js';
-import { validateSchema } from '../utils/schema-validator.js';
-import { env } from '../../config/env.js';
-
-let gistApi: GistApi;
-
-beforeAll(() => {
-  gistApi = new GistApi();
-});
+import { describe, expect, test } from 'vitest';
+import { gistApi } from '../fixtures/gist.fixture.js';
 
 describe('DELETE /gists/{gistId}', () => {
   test('delete gist - returns 204', async () => {

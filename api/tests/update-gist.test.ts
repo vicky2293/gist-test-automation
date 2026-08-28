@@ -1,17 +1,12 @@
 import { describe, expect, beforeAll, test } from 'vitest';
-import { GistApi } from '../clients/gist.api.js';
+import { gistApi } from '../fixtures/gist.fixture.js';
 import { validateSchema } from '../utils/schema-validator.js';
 import { env } from '../../config/env.js';
 
-let gistApi: GistApi;
 const requestBody = {
   description: 'An updated gist description',
   files: { 'README.md': { content: 'Hello World from GitHub' } },
 };
-
-beforeAll(() => {
-  gistApi = new GistApi();
-});
 
 describe('PATCH /gists/{gist_id}', () => {
   test('list gists - returns 200', async () => {
