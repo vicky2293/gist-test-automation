@@ -1,8 +1,7 @@
-import { describe, expect, it, beforeAll, test } from 'vitest';
+import { describe, expect, beforeAll, test } from 'vitest';
 import { GistApi } from '../clients/gist.api.js';
-import { Gist } from '../models/types.js';
 import { validateSchema } from '../utils/schema-validator.js';
-import { GistFixtures } from '../fixtures/gist.fixture.js';
+
 
 let gistApi: GistApi;
 const requestBody = {
