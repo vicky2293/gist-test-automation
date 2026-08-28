@@ -14,3 +14,13 @@ export interface CreateGistRequest {
   >;
   public: boolean;
 }
+
+export interface UpdateGistRequest {
+  description: string;
+  files: Record<
+    string,
+    {
+      content: string;
+    }
+  >;
+}

@@ -1,6 +1,6 @@
-import request, { Response } from 'supertest';
+import request from 'supertest';
 import { env } from '../../config/env.js';
-import type { Authentication, CreateGistRequest } from '../models/types.js';
+import type { Authentication, CreateGistRequest, UpdateGistRequest } from '../models/types.js';
 
 export class GistApi {
   private readonly client = request(env.githubBaseUrl);
@@ -114,7 +114,7 @@ export class GistApi {
   async updateGist(
     authentication: Authentication = 'authenticated',
     gistId: string,
-    requestBody: {},
+    requestBody: UpdateGistRequest,
   ) {
     const req = this.client
       .patch(`/gists/${gistId}`)

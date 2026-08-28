@@ -1,4 +1,4 @@
-import { describe, expect, beforeAll, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { gistApi } from '../fixtures/gist.fixture.js';
 import { Gist } from '../models/types.js';
 import { validateSchema } from '../utils/schema-validator.js';
