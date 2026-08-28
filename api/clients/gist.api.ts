@@ -99,7 +99,7 @@ export class GistApi {
     return req;
   }
 
-    async getFGTokenGist(authentication: Authentication = 'authenticated', gistId: string) {
+  async getFGTokenGist(authentication: Authentication = 'authenticated', gistId: string) {
     const req = this.client
       .get(`/gists/${gistId}`)
       .set('Accept', 'application/vnd.github+json')

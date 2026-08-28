@@ -2,7 +2,6 @@ import { describe, expect, beforeAll, test } from 'vitest';
 import { GistApi } from '../clients/gist.api.js';
 import { validateSchema } from '../utils/schema-validator.js';
 
-
 let gistApi: GistApi;
 const requestBody = {
   description: 'Example of a gist',
@@ -26,5 +25,17 @@ describe('POST /gists', () => {
     const response = await gistApi.createGist('unauthenticated', requestBody);
     expect(response.status).toBe(401);
     expect(response.body.message).toBe('Requires authentication');
+  });
+
+  test('cannot create gist without required body paramter - returns 403', async () => {
+    const invalidRequestBody = {
+      description: 'Example of a gist',
+      public: false,
+    };
+    const response = await gistApi.createGist('authenticated', invalidRequestBody); // Type Error - CAn be ignored for this negative test.
+    expect(response.status).toBe(422);
+    expect(response.body.message).toContain(
+      'Invalid input: object is missing required key: files.',
+    );
   });
 });
