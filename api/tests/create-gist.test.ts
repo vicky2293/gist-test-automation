@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { gistApi } from '../fixtures/gist.fixture.js';
 import { validateSchema } from '../utils/schema-validator.js';
+import type { CreateGistRequest } from '../models/types.js';
 
 const requestBody = {
   description: 'Example of a gist',
@@ -26,8 +27,9 @@ describe('POST /gists', () => {
     const invalidRequestBody = {
       description: 'Example of a gist',
       public: false,
-    };
-    const response = await gistApi.createGist('authenticated', invalidRequestBody); // Type Error - CAn be ignored for this negative test.
+    } as CreateGistRequest;
+
+    const response = await gistApi.createGist('authenticated', invalidRequestBody);
     expect(response.status).toBe(422);
     expect(response.body.message).toContain(
       'Invalid input: object is missing required key: files.',
