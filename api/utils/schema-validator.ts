@@ -1,14 +1,15 @@
-import Ajv from 'ajv';
+import { Ajv } from 'ajv';
 import addFormats from 'ajv-formats';
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
 
+const addFormat = addFormats as unknown as typeof addFormats.default;
 const ajv = new Ajv({
   allErrors: true,
   strict: true,
 });
 
-addFormats(ajv);
+addFormat(ajv);
 
 const SCHEMA_DIR = path.resolve('api/schemas');
 
