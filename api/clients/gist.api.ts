@@ -128,4 +128,16 @@ export class GistApi {
 
     return req;
   }
+
+  async deleteGist(authentication: Authentication = 'authenticated', gistId: string) {
+    const req = this.client
+      .delete(`/gists/${gistId}`)
+      .set('Accept', 'application/vnd.github+json')
+      .set('X-GitHub-Api-Version', '2026-03-10')
+      .set('User-Agent', 'gist-api-test-framework');
+
+    this.addAuthentication(req, authentication);
+
+    return req;
+  }
 }
