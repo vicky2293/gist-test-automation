@@ -21,8 +21,8 @@ describe('PATCH /gists/{gist_id}', () => {
     expect(response.status).toBe(200);
   });
 
-    test('cannot update gist with invalid gist-id - returns 404', async () => {
-    const response = await gistApi.updateGist('authenticated', '1223' , {});
+  test('cannot update gist with invalid gist-id - returns 404', async () => {
+    const response = await gistApi.updateGist('authenticated', '1223', {});
     expect(response.status).toBe(404);
   });
 });

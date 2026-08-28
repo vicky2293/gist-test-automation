@@ -9,7 +9,7 @@ const requestBody = {
 };
 
 describe('POST /gists', () => {
-  test('list gists - returns 201', async () => {
+  test('create gists - returns 201', async () => {
     const response = await gistApi.createGist('authenticated', requestBody);
     expect(response.status).toBe(201);
 
