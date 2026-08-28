@@ -110,4 +110,22 @@ export class GistApi {
 
     return req;
   }
+
+  async updateGist(
+    authentication: Authentication = 'authenticated',
+    gistId: string,
+    requestBody: {},
+  ) {
+    const req = this.client
+      .patch(`/gists/${gistId}`)
+      .set('Accept', 'application/vnd.github+json')
+      .set('X-GitHub-Api-Version', '2026-03-10')
+      .set('User-Agent', 'gist-api-test-framework');
+
+    this.addAuthentication(req, authentication);
+
+    req.send(requestBody);
+
+    return req;
+  }
 }
