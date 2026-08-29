@@ -10,11 +10,32 @@ const requestBody = {
 };
 
 describe('POST /gists', () => {
-  test('create gists - returns 201', async () => {
+  test('create private gists - returns 201', async () => {
     const response = await gistApi.createGist('authenticated', requestBody);
     expect(response.status).toBe(201);
+    expect(response.body.public).toBe(false);
+    const gistId = response.body.id;
 
     validateSchema('createGist.json', response.body);
+
+    const delete_response = await gistApi.deleteGist('authenticated', gistId);
+    expect(delete_response.status).toBe(204);
+  });
+
+  test('create public gists - returns 201', async () => {
+    const requestBody = {
+      description: 'Example of a gist',
+      public: true,
+      files: { 'README.md': { content: 'Hello World' } },
+    };
+    const response = await gistApi.createGist('authenticated', requestBody);
+    expect(response.status).toBe(201);
+    expect(response.body.public).toBe(true);
+    const gistId = response.body.id;
+    validateSchema('createGist.json', response.body);
+
+    const delete_response = await gistApi.deleteGist('authenticated', gistId);
+    expect(delete_response.status).toBe(204);
   });
 
   test('cannot create gist with personal access token - returns 401', async () => {
