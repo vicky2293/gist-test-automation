@@ -47,7 +47,7 @@
               "type": "string"
             },
             "language": {
-              "type": "string"
+              "type": ["string", "null"]
             },
             "raw_url": {
               "type": "string"
