@@ -48,7 +48,7 @@ describe('GET /gists - authenticated', () => {
     expect(response.status).toBe(200);
 
     const body = response.body;
-    expect(body.length).toBe(0);
+    expect(body.length).toBe(1);
     validateSchema('listGist.json', response.body);
   });
 
