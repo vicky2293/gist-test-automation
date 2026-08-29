@@ -22,7 +22,7 @@ jobs:
       - name: Prettier
         run: npm run format:check
       - name: Run API tests
-        run: npm run api:test
+        run: npm run test:api
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_FGTOKEN: ${{ secrets.GH_FGTOKEN }}

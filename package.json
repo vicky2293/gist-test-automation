@@ -7,15 +7,15 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "api:test": "vitest run",
+    "test:api": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "npx playwright test",
-    "test-ui": "npx playwright test --ui",
-    "test-chrome": "  npx playwright test --project=chromium",
+    "test:ui": "npx playwright test --ui",
+    "test:chrome": "  npx playwright test --project=chromium",
     "report": "npx playwright show-report"
   },
   "devDependencies": {
