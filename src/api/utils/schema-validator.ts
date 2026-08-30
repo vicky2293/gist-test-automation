@@ -11,7 +11,7 @@ const ajv = new Ajv({
 
 addFormat(ajv);
 
-const SCHEMA_DIR = path.resolve('api/schemas');
+const SCHEMA_DIR = path.resolve('src/api/schemas');
 
 export function validateSchema(schemaFileName: string, response: unknown) {
   const schemaPath = path.join(SCHEMA_DIR, schemaFileName);

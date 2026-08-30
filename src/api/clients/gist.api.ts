@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { env } from '../../config/env.js';
+import { env } from '../../../config/env.js';
 import type { Authentication, CreateGistRequest, UpdateGistRequest } from '../models/types.js';
 
 export class GistApi {
